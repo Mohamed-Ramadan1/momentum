@@ -1,0 +1,11 @@
+
+used tools 
+    -- PSQL as the database
+    -- express.js as the web framework
+    -- Sequelize as the ORM
+    -- JWT for authentication
+    -- bcrypt for password hashing
+    -- Mocha and Chai for testing
+
+
+-- Auth and Authorization
