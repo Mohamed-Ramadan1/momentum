@@ -1,0 +1,1 @@
+FROM --platform=arm64/v8 node:20.10.0-alpine3.20
