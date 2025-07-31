@@ -8,4 +8,26 @@ used tools
     -- Mocha and Chai for testing
 
 
+
+--Main Feature
+    --Tasks management system
+    -- Time planning and tracking
+    -- Achievement tracking / goals and milestones
+    -- Habit formation and tracking (with reminders emails / notifications )
+    -- Ai recommendations for task prioritization and time management
+    -- plans and schedules help with ai interaction
+
+
 -- Auth and Authorization
+
+--Memco
+
+am working on habits / tasks management system with advanced feature and i have an idea to 
+be added in this application the mocks interviews the user will chose a topic as example the system 
+design the system will use ai model like grock and gpt or clude to pick a question real world one 
+then the user will have time matching as real interview enviroment with some hints allowed the user will 
+have white interface to write the answer and prevent the copy and pasting and then the user will answer as it 
+requried the question after the ending of the time or the user submit his answer he will receive very detailed
+ review on his answer what is missing what is correct and what need to be focused on and also this gon be vi ai 
+ model to have interactive detailed experince and recommand topics and stuff to focus on and be ready for the next time the
+user will get fair grade out of 10 based on the answer and based of using hints
