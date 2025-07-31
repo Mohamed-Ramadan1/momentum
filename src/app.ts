@@ -1,28 +1,25 @@
 import express from "express";
+import cors from "cors";
+import helmet from "helmet";
+import morgan from "morgan";
 import dotenv from "dotenv";
-
-import { pool } from "@config/index";
+import { prisma } from "./config";
 // Load environment variables
 dotenv.config();
 
 const app = express();
 
-// Basic middleware
+// Middlewares
+app.use(helmet());
+app.use(cors());
+app.use(morgan("combined"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Basic route
 app.get("/", async (req, res) => {
-  try {
-    const result = await pool.query("SELECT NOW()");
-    res.json({
-      message: "The most powerful API in my career",
-      time: result.rows[0].now,
-    });
-  } catch (error) {
-    console.error("Error executing query", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
+  const users = await prisma.User.findMany();
+  res.json({ message: "Welcome to the API", users });
 });
 
 export default app;

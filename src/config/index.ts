@@ -1,1 +1,1 @@
-export { pool, testDatabaseConnection } from "./db.config";
+export { prisma } from "./db.config";
