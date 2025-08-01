@@ -1,1 +1,7 @@
-export { prisma } from "./db.config";
+export {
+  db,
+  pool,
+  validateDatabaseConnection,
+  initializeDatabase,
+  closeDatabaseConnection,
+} from "./db.config";

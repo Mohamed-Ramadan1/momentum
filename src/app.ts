@@ -3,7 +3,9 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import dotenv from "dotenv";
-import { prisma } from "./config";
+
+// middlewares imports
+import { databaseHealthCheck } from "./shared/index";
 // Load environment variables
 dotenv.config();
 
@@ -18,8 +20,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // Basic route
 app.get("/", async (req, res) => {
-  const users = await prisma.User.findMany();
-  res.json({ message: "Welcome to the API", users });
+  res.json({ message: "Welcome to the API" });
 });
+
+// Health check route
+app.get("/health", databaseHealthCheck);
 
 export default app;

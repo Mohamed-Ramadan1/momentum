@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "migrate": "drizzle-kit migrate",
+    "generate": "drizzle-kit generate",
     "start": "node dist/index.js",
     "build": "webpack --mode production",
     "test": "jest",
