@@ -1,24 +1,29 @@
 import express from "express";
+import cors from "cors";
+import helmet from "helmet";
+import morgan from "morgan";
 import dotenv from "dotenv";
 
+// middlewares imports
+import { databaseHealthCheck } from "./shared/index";
 // Load environment variables
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-// Basic middleware
+// Middlewares
+app.use(helmet());
+app.use(cors());
+app.use(morgan("combined"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Basic route
-app.get("/", (req, res) => {
-  res.json({ message: "Blog API Server is running!" });
+app.get("/", async (req, res) => {
+  res.json({ message: "Welcome to the API" });
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// Health check route
+app.get("/health", databaseHealthCheck);
 
 export default app;
