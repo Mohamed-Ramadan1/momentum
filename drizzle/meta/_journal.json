@@ -15,6 +15,27 @@
       "when": 1754000129532,
       "tag": "0001_flowery_lucky_pierre",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1754174590566,
+      "tag": "0002_big_marrow",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1754174801048,
+      "tag": "0003_amazing_monster_badoon",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1754175064439,
+      "tag": "0004_tricky_cannonball",
+      "breakpoints": true
     }
   ]
 }
