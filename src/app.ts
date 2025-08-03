@@ -5,11 +5,11 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 
 // moc sending email
-import { EmailTransporter } from "./shared/utils/mailTransporter";
+import { EmailTransporter } from "@shared/utils/mailTransporter";
 
 const emailTransporter = new EmailTransporter();
 // middlewares imports
-import { databaseHealthCheck } from "./shared/index";
+import { databaseHealthCheck } from "@shared/index";
 // Load environment variables
 dotenv.config();
 
