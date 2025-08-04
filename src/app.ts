@@ -3,11 +3,9 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import dotenv from "dotenv";
-
-// moc sending email
-import { EmailTransporter } from "@shared/utils/mailTransporter";
-
-const emailTransporter = new EmailTransporter();
+import { eq } from "drizzle-orm";
+import { usersTable } from "./db/schema/users";
+import { db } from "@config/db.config";
 // middlewares imports
 import { databaseHealthCheck } from "@shared/index";
 // Load environment variables
@@ -25,16 +23,16 @@ app.use(express.urlencoded({ extended: true }));
 // Basic route
 app.get("/", async (req, res) => {
   try {
-    await emailTransporter.sendEmail(
-      "mohamedramadan11b@gmail.com",
-      "Welcome to the API",
-      "Hello, welcome to our API!",
-      "<p>Hello, welcome to our API!</p>"
-    );
+    const user = await db.insert(usersTable).values({
+      name: "John Doe",
+      age: 30,
+      email: "john.doe@example.com",
+    });
+    console.log(user);
+    return res.json({ message: "Welcome to the API", user });
   } catch (error) {
     console.error("Error sending email:", error);
   }
-  res.json({ message: "Welcome to the API" });
 });
 
 // Health check route

@@ -14,7 +14,9 @@
     "baseUrl": "./src",
     "paths": {
       "@config/*": ["config/*"],
-      "@shared/*": ["shared/*"]
+      "@shared/*": ["shared/*"],
+      "@db/*": ["db/*"],
+      "@queues/*": ["queues/*"]
     }
   },
   "include": ["src/**/*.ts"],
