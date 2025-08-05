@@ -17,6 +17,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@types/inversify": "^2.0.32",
     "@types/ms": "^2.1.0",
     "@types/uuid": "^10.0.0",
     "aws-sdk": "^2.1692.0",

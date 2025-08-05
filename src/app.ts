@@ -1,16 +1,19 @@
-import express from "express";
+// packages imports
+import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
-import dotenv from "dotenv";
-import { eq } from "drizzle-orm";
-import { usersTable } from "./db/schema/users";
-import { db } from "@config/db.config";
-// middlewares imports
-import { databaseHealthCheck } from "@shared/index";
-// Load environment variables
-dotenv.config();
+import { container } from "@config/inversify.config";
 
+// shard imports
+import { globalError, AppError, TYPES } from "@shared/index";
+
+// Initialize the token generator
+
+const gent = container.get(TYPES.TokenGenerator);
+const gnet2 = container.get(TYPES.JWTConfig);
+console.log(gent);
+console.log(gnet2);
 const app = express();
 
 // Middlewares
@@ -20,22 +23,24 @@ app.use(morgan("combined"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Basic route
-app.get("/", async (req, res) => {
-  try {
-    const user = await db.insert(usersTable).values({
-      name: "John Doe",
-      age: 30,
-      email: "john.doe@example.com",
-    });
-    console.log(user);
-    return res.json({ message: "Welcome to the API", user });
-  } catch (error) {
-    console.error("Error sending email:", error);
-  }
+app.use(express.static("public"));
+
+app.use("/", (req: Request, res: Response) => {
+  res.status(200).json({
+    status: "success",
+    message: "Server is healthy",
+    accessToken: "1234567890",
+    refreshToken: "0987654321",
+  });
 });
 
-// Health check route
-app.get("/health", databaseHealthCheck);
+app.use("/health", (req: Request, res: Response) => {
+  res.status(200).json({ status: "success", message: "Server is healthy" });
+});
+// Error handling middleware
+app.use((req: Request, res: Response, next: NextFunction) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
+});
+app.use(globalError);
 
 export default app;
