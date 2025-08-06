@@ -4,7 +4,6 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 
-import { upload } from "@config/multer.config";
 // shard imports
 import { globalError, AppError } from "@shared/index";
 
@@ -21,13 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 
-app.use("/", upload.single("file"), (req: Request, res: Response) => {
-  if (!req.file) {
-    return res
-      .status(400)
-      .json({ status: "fail", message: "No file uploaded" });
-  }
-  console.log(req.file);
+app.use("/", (req: Request, res: Response) => {
   res.status(200).json({
     status: "success",
     message: "Server is healthy",

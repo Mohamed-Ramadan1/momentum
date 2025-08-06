@@ -4,6 +4,8 @@ import app from "./app";
 // app.ts or server.ts
 import { initializeDatabase } from "@config/db.config";
 
+// Or "info", "error", etc.
+
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
