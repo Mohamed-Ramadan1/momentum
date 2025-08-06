@@ -4,4 +4,5 @@ export const SHARED_TYPES = {
   TokenRevocation: Symbol.for("TokenRevocation"),
   TokenValidator: Symbol.for("TokenValidator"),
   JWTService: Symbol.for("JWTService"),
+  ErrorUtils: Symbol.for("ErrorUtils"),
 };

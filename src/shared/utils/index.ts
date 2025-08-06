@@ -5,3 +5,4 @@ export { TokenRevocation } from "./jwt/tokenRevocation";
 export { TokenValidator } from "./jwt/tokenValidator";
 export { ContainerModuleBuilder } from "./containerModuleBuilder";
 export { AppError } from "./appError";
+export { ErrorUtils } from "./errorUtils";

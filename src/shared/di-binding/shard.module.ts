@@ -9,6 +9,7 @@ import {
   ITokenGenerator,
   ITokenRevocation,
   ITokenValidator,
+  IErrorUtils,
 } from "../interfaces";
 
 // utils class imports
@@ -18,6 +19,7 @@ import {
   TokenGenerator,
   TokenRevocation,
   TokenValidator,
+  ErrorUtils,
 } from "../utils";
 
 export const sharedModule = new ContainerModuleBuilder()
@@ -26,6 +28,7 @@ export const sharedModule = new ContainerModuleBuilder()
   .addSingleton<ITokenGenerator>(TYPES.TokenGenerator, TokenGenerator)
   .addSingleton<ITokenRevocation>(TYPES.TokenRevocation, TokenRevocation)
   .addSingleton<ITokenValidator>(TYPES.TokenValidator, TokenValidator)
+  .addSingleton<IErrorUtils>(TYPES.ErrorUtils, ErrorUtils)
   .build();
 
 //////////////////////////////////////////////////

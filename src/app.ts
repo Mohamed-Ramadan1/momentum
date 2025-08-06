@@ -3,17 +3,13 @@ import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
-import { container } from "@config/inversify.config";
 
+import { upload } from "@config/multer.config";
 // shard imports
-import { globalError, AppError, TYPES } from "@shared/index";
+import { globalError, AppError } from "@shared/index";
 
 // Initialize the token generator
 
-const gent = container.get(TYPES.TokenGenerator);
-const gnet2 = container.get(TYPES.JWTConfig);
-console.log(gent);
-console.log(gnet2);
 const app = express();
 
 // Middlewares
@@ -25,7 +21,13 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 
-app.use("/", (req: Request, res: Response) => {
+app.use("/", upload.single("file"), (req: Request, res: Response) => {
+  if (!req.file) {
+    return res
+      .status(400)
+      .json({ status: "fail", message: "No file uploaded" });
+  }
+  console.log(req.file);
   res.status(200).json({
     status: "success",
     message: "Server is healthy",
