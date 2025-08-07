@@ -7,8 +7,6 @@ import morgan from "morgan";
 // shard imports
 import { globalError, AppError } from "@shared/index";
 
-// Initialize the token generator
-
 const app = express();
 
 // Middlewares

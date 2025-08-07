@@ -5,4 +5,6 @@ export const SHARED_TYPES = {
   TokenValidator: Symbol.for("TokenValidator"),
   JWTService: Symbol.for("JWTService"),
   ErrorUtils: Symbol.for("ErrorUtils"),
+  RedisTokenManager: Symbol.for("RedisTokenManager"),
+  EmailTransporter: Symbol.for("EmailTransporter"),
 };

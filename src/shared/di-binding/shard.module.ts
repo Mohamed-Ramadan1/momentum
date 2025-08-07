@@ -10,6 +10,8 @@ import {
   ITokenRevocation,
   ITokenValidator,
   IErrorUtils,
+  IRedisTokenManager,
+  IEmailTransporter,
 } from "../interfaces";
 
 // utils class imports
@@ -20,6 +22,8 @@ import {
   TokenRevocation,
   TokenValidator,
   ErrorUtils,
+  RedisTokenManager,
+  EmailTransporter,
 } from "../utils";
 
 export const sharedModule = new ContainerModuleBuilder()
@@ -29,6 +33,8 @@ export const sharedModule = new ContainerModuleBuilder()
   .addSingleton<ITokenRevocation>(TYPES.TokenRevocation, TokenRevocation)
   .addSingleton<ITokenValidator>(TYPES.TokenValidator, TokenValidator)
   .addSingleton<IErrorUtils>(TYPES.ErrorUtils, ErrorUtils)
+  .addSingleton<IRedisTokenManager>(TYPES.RedisTokenManager, RedisTokenManager)
+  .addSingleton<IEmailTransporter>(TYPES.EmailTransporter, EmailTransporter)
   .build();
 
 //////////////////////////////////////////////////
