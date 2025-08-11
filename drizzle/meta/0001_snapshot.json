@@ -1,6 +1,6 @@
 {
-  "id": "96698ec1-d38a-4b2d-9f98-9b4adaa0d7e2",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "5ad4e18d-6957-432e-b880-6391633c790d",
+  "prevId": "96698ec1-d38a-4b2d-9f98-9b4adaa0d7e2",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -18,12 +18,6 @@
         "name": {
           "name": "name",
           "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "age": {
-          "name": "age",
-          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
@@ -45,14 +39,7 @@
           "name": "recovery_email",
           "type": "varchar(255)",
           "primaryKey": false,
-          "notNull": true
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "now()"
+          "notNull": false
         },
         "is_verified": {
           "name": "is_verified",
@@ -61,15 +48,15 @@
           "notNull": false,
           "default": false
         },
-        "email_verification_token": {
-          "name": "email_verification_token",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": false
-        },
         "email_verified_at": {
           "name": "email_verified_at",
           "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "email_verification_token": {
+          "name": "email_verification_token",
+          "type": "varchar(255)",
           "primaryKey": false,
           "notNull": false
         },
@@ -84,6 +71,20 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
         },
         "updated_at": {
           "name": "updated_at",
