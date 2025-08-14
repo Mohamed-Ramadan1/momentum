@@ -4,20 +4,18 @@ import app from "./app";
 // app.ts or server.ts
 import { initializeDatabase } from "@config/db.config";
 import { LoggerFactory } from "@shared/logs/loggerFactory";
-import { log } from "console";
-
-// Or "info", "error", etc.
 
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 
+const loggerFactory = new LoggerFactory();
+
 // Start server
 app.listen(PORT, async () => {
   // Ensure the database connection is established
-  // LoggerFactory initialization
-  LoggerFactory.init("info");
-  const logger = LoggerFactory.getLogger("MomentumApp");
+
+  const logger = loggerFactory.getLogger("MomentumApp");
   logger.info("Logger initialized");
 
   try {

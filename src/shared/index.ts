@@ -12,3 +12,6 @@ export { globalError } from "./controllers/error.Controller";
 
 // const exports
 export { TYPES } from "./const/containerTypes";
+
+// Logger exports
+export { LoggerFactory } from "./logs/loggerFactory";

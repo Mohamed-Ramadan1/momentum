@@ -6,3 +6,4 @@ export { ITokenValidator } from "./tokens/tokenValidator.interface";
 export { IErrorUtils } from "./errorUtils.interface";
 export { IRedisTokenManager } from "./redis/redisTokenManager.interface";
 export { IEmailTransporter } from "./mailTransporter.interface";
+export { ILoggerFactory } from "./loggerFactory.interface";

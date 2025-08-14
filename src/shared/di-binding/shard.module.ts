@@ -12,6 +12,7 @@ import {
   IErrorUtils,
   IRedisTokenManager,
   IEmailTransporter,
+  ILoggerFactory,
 } from "../interfaces";
 
 // utils class imports
@@ -37,7 +38,7 @@ export const sharedModule = new ContainerModuleBuilder()
   .addSingleton<IErrorUtils>(TYPES.ErrorUtils, ErrorUtils)
   .addSingleton<IRedisTokenManager>(TYPES.RedisTokenManager, RedisTokenManager)
   .addSingleton<IEmailTransporter>(TYPES.EmailTransporter, EmailTransporter)
-  .addSingleton<LoggerFactory>(TYPES.LoggerFactory, LoggerFactory)
+  .addSingleton<ILoggerFactory>(TYPES.LoggerFactory, LoggerFactory)
   .build();
 //////////////////////////////////////////////////
 // OLD Virsion - For Reference Only

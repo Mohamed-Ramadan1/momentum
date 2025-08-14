@@ -3,7 +3,7 @@ import fs from "fs";
 import DailyRotateFile from "winston-daily-rotate-file";
 import { jsonFormatter } from "./jsonFormatter";
 import { injectable } from "inversify";
-
+import { ILoggerFactory } from "@shared/interfaces/loggerFactory.interface";
 /**
  * LoggerFactory provides a singleton Winston logger
  * instance configured with console and rotating file transports.
@@ -17,8 +17,11 @@ import { injectable } from "inversify";
  */
 
 @injectable()
-export class LoggerFactory {
+export class LoggerFactory implements ILoggerFactory {
   private static instance: Logger;
+  constructor() {
+    this.init();
+  }
 
   /**
    * Initializes the logger with the specified log level.
@@ -26,7 +29,7 @@ export class LoggerFactory {
    *
    * @param logLevel - Logging level (default: 'info')
    */
-  static init(logLevel: string = "info"): void {
+  private init(logLevel: string = "info"): void {
     if (LoggerFactory.instance) return;
 
     const logDir = process.env.LOG_DIR || "logs";
@@ -100,7 +103,7 @@ export class LoggerFactory {
    * @returns A Winston Logger instance
    * @throws Error if logger is not initialized
    */
-  static getLogger(moduleName?: string): Logger {
+  getLogger(moduleName?: string): Logger {
     if (!LoggerFactory.instance) {
       throw new Error(
         "Logger not initialized. Call LoggerFactory.init() first."
