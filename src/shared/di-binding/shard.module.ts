@@ -26,6 +26,8 @@ import {
   EmailTransporter,
 } from "../utils";
 
+import { LoggerFactory } from "../logs/loggerFactory";
+
 export const sharedModule = new ContainerModuleBuilder()
   .addSingleton<IJWTConfig>(TYPES.JWTConfig, JWTConfig)
   .addSingleton<IJWTService>(TYPES.JWTService, JWTService)
@@ -35,8 +37,8 @@ export const sharedModule = new ContainerModuleBuilder()
   .addSingleton<IErrorUtils>(TYPES.ErrorUtils, ErrorUtils)
   .addSingleton<IRedisTokenManager>(TYPES.RedisTokenManager, RedisTokenManager)
   .addSingleton<IEmailTransporter>(TYPES.EmailTransporter, EmailTransporter)
+  .addSingleton<LoggerFactory>(TYPES.LoggerFactory, LoggerFactory)
   .build();
-
 //////////////////////////////////////////////////
 // OLD Virsion - For Reference Only
 //////////////////////////////////////////////////

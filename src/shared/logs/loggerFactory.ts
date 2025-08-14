@@ -2,6 +2,7 @@ import winston, { Logger } from "winston";
 import fs from "fs";
 import DailyRotateFile from "winston-daily-rotate-file";
 import { jsonFormatter } from "./jsonFormatter";
+import { injectable } from "inversify";
 
 /**
  * LoggerFactory provides a singleton Winston logger
@@ -14,6 +15,8 @@ import { jsonFormatter } from "./jsonFormatter";
  * logger.info("Hello");
  * ```
  */
+
+@injectable()
 export class LoggerFactory {
   private static instance: Logger;
 

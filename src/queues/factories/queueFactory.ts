@@ -1,6 +1,10 @@
 //packages imports
 import { injectable } from "inversify";
 import { Queue } from "bullmq";
+
+// logging imports
+import {} from "@shared/logs/index";
+
 @injectable()
 export class QueueFactory {
   private queues: Map<string, Queue> = new Map();

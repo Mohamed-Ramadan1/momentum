@@ -3,6 +3,8 @@ import app from "./app";
 
 // app.ts or server.ts
 import { initializeDatabase } from "@config/db.config";
+import { LoggerFactory } from "@shared/logs/loggerFactory";
+import { log } from "console";
 
 // Or "info", "error", etc.
 
@@ -13,18 +15,19 @@ const PORT = process.env.PORT || 3000;
 // Start server
 app.listen(PORT, async () => {
   // Ensure the database connection is established
+  // LoggerFactory initialization
+  LoggerFactory.init("info");
+  const logger = LoggerFactory.getLogger("MomentumApp");
+  logger.info("Logger initialized");
+
   try {
     // Validate database connection before starting the server
     await initializeDatabase();
 
-    console.log("Database connected successfully");
-    console.log(
-      `Server is running on port ${PORT}`,
-      `full URL: http://localhost:${PORT}`
-    );
+    logger.info(`Server is running on port ${PORT}`);
+    logger.info(`Database connection established`);
   } catch (error) {
-    console.error("Database connection failed:", error);
-
-    process.exit(1); // Exit the process if database connection fails
+    logger.error("Database connection failed:", error);
+    process.exit(1);
   }
 });
