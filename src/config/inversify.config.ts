@@ -9,7 +9,7 @@ import { queueModule } from "@queues/index";
 import { TYPES } from "@shared/index";
 
 // Load modules
-container.load(sharedModule);
+container.load(sharedModule, queueModule);
 
 console.log("🧪 Testing all services...");
 

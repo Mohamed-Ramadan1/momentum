@@ -61,26 +61,52 @@ export class QueueFactory {
   }
 
   getQueue(name: string): Queue | undefined {
-    return undefined;
+    if (this.queues.has(name)) {
+      return this.queues.get(name);
+    } else {
+      this.logger.warn(`Queue ${name} does not exist.`);
+      return undefined;
+    }
   }
 
   listQueues(): Queue[] {
     return Array.from(this.queues.values());
   }
+
+  // TODO
   queueExists(name: string): boolean {
     return this.queues.has(name);
   }
+
+  // TODO
   deleteQueue(name: string): void {}
+
+  // TODO
   pauseQueue(name: string): void {}
+
+  // TODO
   resumeQueue(name: string): void {}
+  // TODO
   emptyQueue(name: string): void {}
+  // TODO
   closeQueue(name: string): void {}
+  // TODO
   closeAllQueues(): void {}
+
+  // TODO
   getQueueMetrics(name: string): void {}
+  // TODO
   isHealthy(name: string): void {}
+
+  // TODO
   monitorQueue(name: string): void {}
+  // TODO
   pauseAllQueues(): void {}
+  // TODO
   resumeAllQueues(): void {}
+  // TODO
   drainQueue(name: string): void {}
+
+  // TODO
   getQueueState(name: string): void {}
 }

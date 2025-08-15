@@ -3,18 +3,19 @@ import app from "./app";
 
 // app.ts or server.ts
 import { initializeDatabase } from "@config/db.config";
-import { LoggerFactory } from "@shared/logs/loggerFactory";
+import { LoggerFactory } from "./shared";
+import { container } from "@config/inversify.config";
+import { TYPES } from "./shared";
 
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
+const loggerFactory = container.get<LoggerFactory>(TYPES.LoggerFactory);
 
-const loggerFactory = new LoggerFactory();
+const PORT = process.env.PORT || 3000;
 
 // Start server
 app.listen(PORT, async () => {
   // Ensure the database connection is established
-
   const logger = loggerFactory.getLogger("MomentumApp");
   logger.info("Logger initialized");
 
