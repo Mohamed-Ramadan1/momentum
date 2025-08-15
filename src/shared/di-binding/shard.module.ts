@@ -29,6 +29,26 @@ import {
 
 import { LoggerFactory } from "../logs/loggerFactory";
 
+// ADD THESE DEBUG LOGS TO SEE WHAT'S HAPPENING:
+
+console.log("🔍 DEBUG: Checking imports...");
+console.log("TYPES object:", TYPES);
+console.log("ContainerModuleBuilder:", ContainerModuleBuilder);
+
+// Check if classes are properly imported
+console.log("Classes:");
+console.log("- JWTConfig:", JWTConfig);
+console.log("- JWTService:", JWTService);
+console.log("- TokenGenerator:", TokenGenerator);
+console.log("- TokenRevocation:", TokenRevocation);
+console.log("- TokenValidator:", TokenValidator);
+console.log("- ErrorUtils:", ErrorUtils);
+console.log("- RedisTokenManager:", RedisTokenManager);
+console.log("- EmailTransporter:", EmailTransporter);
+console.log("- LoggerFactory:", LoggerFactory);
+
+console.log("🏗️  Creating shared module...");
+
 export const sharedModule = new ContainerModuleBuilder()
   .addSingleton<IJWTConfig>(TYPES.JWTConfig, JWTConfig)
   .addSingleton<IJWTService>(TYPES.JWTService, JWTService)
@@ -40,29 +60,5 @@ export const sharedModule = new ContainerModuleBuilder()
   .addSingleton<IEmailTransporter>(TYPES.EmailTransporter, EmailTransporter)
   .addSingleton<ILoggerFactory>(TYPES.LoggerFactory, LoggerFactory)
   .build();
-//////////////////////////////////////////////////
-// OLD Virsion - For Reference Only
-//////////////////////////////////////////////////
-// const sharedModule = new ContainerModule(
-//   (options: ContainerModuleLoadOptions) => {
-//     options.bind<IJWTConfig>(TYPES.JWTConfig).to(JWTConfig).inSingletonScope();
-//     options
-//       .bind<IJWTService>(TYPES.JWTService)
-//       .to(JWTService)
-//       .inSingletonScope();
-//     options
-//       .bind<ITokenGenerator>(TYPES.TokenGenerator)
-//       .to(TokenGenerator)
-//       .inSingletonScope();
-//     options
-//       .bind<ITokenRevocation>(TYPES.TokenRevocation)
-//       .to(TokenRevocation)
-//       .inSingletonScope();
-//     options
-//       .bind<ITokenValidator>(TYPES.TokenValidator)
-//       .to(TokenValidator)
-//       .inSingletonScope();
-//   }
-// );
 
-// export { sharedModule };
+console.log("✅ Shared module created:", sharedModule);

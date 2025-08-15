@@ -11,20 +11,7 @@ import { queueRedis } from "@config/index";
 import { ILoggerFactory } from "@shared/interfaces";
 
 // interfaces imports
-import { QueueConfig } from "../interfaces/queueFactory.interface";
-
-// const defaultConfig: Partial<QueueConfig> = {
-//   prefix: "momentum-jobs",
-//   defaultJobOptions: {
-//     attempts: 3,
-//     removeOnComplete: 10,
-//     removeOnFail: 5,
-//     backoff: {
-//       type: "exponential",
-//       delay: 2000,
-//     },
-//   },
-// };
+import { GenerateQueueData } from "../interfaces/queueFactory.interface";
 
 @injectable()
 export class QueueFactory {
@@ -38,10 +25,39 @@ export class QueueFactory {
     this.logger = loggerFactory.getLogger("QueueFactory");
   }
 
-  createQueue() {
-    const queue: Queue = new Queue("default", {
-      connection: queueRedis,
-    });
+  async createQueue(data: GenerateQueueData): Promise<Queue> {
+    try {
+      // Use the actual queue name as the key
+      const queueKey = data.queueName;
+
+      // Clean up existing queue if it exists
+      if (this.queues.has(queueKey)) {
+        const existingQueue = this.queues.get(queueKey);
+        await existingQueue?.close();
+      }
+
+      const queue = new Queue(data.queueName, {
+        connection: queueRedis,
+        prefix: "momentum-jobs",
+        defaultJobOptions: {
+          attempts: data.attempts || 5,
+          removeOnComplete: data.removeOnComplete || 10,
+          removeOnFail: data.removeOnFail || 5,
+          backoff: {
+            type: data.backoff?.type || "exponential",
+            delay: data.backoff?.delay || 2000,
+          },
+        },
+      });
+
+      // Store with the actual queue name
+      this.queues.set(queueKey, queue);
+
+      return queue;
+    } catch (err: any) {
+      this.logger.error(`Failed to create queue ${data.queueName}:`, err);
+      throw err; // Re-throw to let caller handle
+    }
   }
 
   getQueue(name: string): Queue | undefined {

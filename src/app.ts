@@ -8,8 +8,6 @@ import morgan from "morgan";
 import { globalError, AppError } from "@shared/index";
 
 const app = express();
-
-// Middlewares
 app.use(helmet());
 app.use(cors());
 app.use(morgan("combined"));
