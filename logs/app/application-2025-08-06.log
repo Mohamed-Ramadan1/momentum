@@ -1,3 +1,0 @@
-{"additionalData":{"key":"value"},"inc":"12345","level":"error","message":"app service This is a test error log","module":"UserService","service":"global-app","timestamp":"2025-08-06 08:15:09","userId":"user-123"}
-{"additionalData":{"key":"value"},"inc":"12345","level":"error","message":"app service This is a test error log","module":"incservice","service":"global-app","timestamp":"2025-08-06 08:16:01","userId":"user-123"}
-{"additionalData":{"key":"value"},"inc":"12345","level":"info","message":"UserService This is a test error log","module":"UserService","service":"global-app","timestamp":"2025-08-06 08:16:01","userId":"user-123"}
