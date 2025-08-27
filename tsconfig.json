@@ -13,7 +13,10 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./src",
     "paths": {
-      "@config/*": ["config/*"]
+      "@config/*": ["config/*"],
+      "@shared/*": ["shared/*"],
+      "@db/*": ["db/*"],
+      "@queues/*": ["queues/*"]
     }
   },
   "include": ["src/**/*.ts"],

@@ -1,29 +1,25 @@
-import express from "express";
+// packages imports
+import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
-import dotenv from "dotenv";
 
-// middlewares imports
-import { databaseHealthCheck } from "./shared/index";
-// Load environment variables
-dotenv.config();
+// shard imports
+import { globalError, AppError } from "@shared/index";
 
 const app = express();
-
-// Middlewares
 app.use(helmet());
 app.use(cors());
 app.use(morgan("combined"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Basic route
-app.get("/", async (req, res) => {
-  res.json({ message: "Welcome to the API" });
-});
+app.use(express.static("public"));
 
-// Health check route
-app.get("/health", databaseHealthCheck);
+// Error handling middleware
+app.use((req: Request, res: Response, next: NextFunction) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
+});
+app.use(globalError);
 
 export default app;
